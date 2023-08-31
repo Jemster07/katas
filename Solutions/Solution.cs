@@ -22,7 +22,7 @@ namespace katas
                     {
                         twoSum[0] = i;
                         twoSum[1] = counter;
-                        
+
                         break;
                     }
                 }
@@ -31,6 +31,37 @@ namespace katas
             }
 
             return twoSum;
+        }
+
+        public int LengthOfLongestSubstring()
+        {
+            string s = "abcabcbb";
+            //string s = "bbbbb";
+            //string s = "pwwkew";
+
+            //--------------------------------------
+
+            char[] charArray = s.ToCharArray();
+            List<char> resultList = new List<char>();
+            int resultLength = 0;
+
+            foreach (char c in charArray)
+            {
+                if (!resultList.Contains(c))
+                {
+                    resultList.Add(c);
+                }
+                else
+                {
+                    int charIndex = resultList.IndexOf(c);
+                    resultList = resultList.Skip(charIndex + 1).ToList();
+                    resultList.Add(c);
+                }
+
+                resultLength = resultLength < resultList.Count ? resultList.Count : resultLength++;
+            }
+
+            return resultLength;
         }
     }
 }
